@@ -17,7 +17,10 @@ I continuously learn new technologies. My current skillset is as below:
 
 * Big Data Technologies: Apache Spark, Hadoop, Hive, Pig
 
-* Machine Learning Skills: Classification - Naive Bayes, Random Forest, Logistic Regression, Decision Trees | Clustering - K-Means| Regression - Linear Regression | Deep Learning - CNN, UNET, Tiramisu, VGG16
+* Machine Learning Skills: 
+** Classification - Naive Bayes, Random Forest, Logistic Regression, Decision Trees Clustering - K-Means
+** Regression - Linear Regression 
+** Deep Learning - CNN, UNET, Tiramisu, VGG16
 
 * Data Visualization/Reporting: matplotlib, HBase, Excel
 

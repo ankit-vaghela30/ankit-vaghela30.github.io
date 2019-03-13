@@ -1,16 +1,33 @@
 ---
-title: "NaiveBayes from scratch"
+title: "Naive Bayes from scratch using Spark RDDs"
 date: 2018-01-21
-tags: [Machine Learning, Data Science, Natural language processing]
+tags: [NaiveBayes, Spark, Machine Learning, Data Science, Natural language processing]
 #header:
 #  image: "/images/perceptron/percept.jpg"
-excerpt: "Data Wrangling, Data Science, Messy Data"
+excerpt: "NaiveBayes algorithm, Machine Learning"
 mathjax: "true"
 ---
 
-# H1 Heading
+# Naive Bayes from scratch in 
 
-## H2 Heading
+Naive bayes is a great algorithm especially for classification task in Natural language processing. This post tries to provide implementation of Naive bayes algorithm from scratch using Spark RDDs. Spark is a very good Big data processing framework and it provides PySpark package for python. This PySpark package has this special data type called RDDs(Resilient Distributed Datasets) which are immutable and partitioned collection of records. We take a NLP problem, a document classification task where given a document, we have to classify it to one of the topic labels. Topic labels can be Management, Economics, Geometry etc.
+
+## fit method
+
+Fit method is generic method for any Machine learning algorithm, used for training on the dataset. Generally, Fit method takes two arguments: dataset and labels. Dataset in this context is set of document's features and values. It is RDD of form ```((id, feature), value)``` where ```id``` is the unique identifier of a document, ```feature``` in our case is word in the document (It can be ngrams feature as well) and ```value``` is value of the feature. Here, value can be TFIDF value or simply word frequency. Labels are set of labels for given document and they are represented as RDD of the form ```(id, label)```. In our fit method ```x``` is dataset and ```y``` is labels.
+
+First we enumerate all labels and extract total number of distinct labels as well as a RDD containing label and it's frequency of the form ```(label, count)```
+
+```python
+      vals = y.values()
+      labels = vals.distinct()
+      counts = vals.countByValue()  # {label: count}
+```
+
+Now we extract size of vocabulary by enumerating through dataset RDD ```x```
+```python
+      vocabulary_size = x.keys().values().distinct().count()
+```
 
 ### H3 Heading
 

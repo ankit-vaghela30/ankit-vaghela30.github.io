@@ -1,8 +1,6 @@
 ---
 title: "About"
 permalink: /about/
-header:
-  image: "/images/about1.jpg"
 ---
 
 I am a Machine learning and Deep learning enthusiast, a grad student with passion for Data Science.

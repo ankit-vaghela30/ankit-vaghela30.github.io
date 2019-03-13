@@ -17,17 +17,44 @@ Naive bayes is a great algorithm especially for classification task in Natural l
 Fit method is generic method for any Machine learning algorithm, used for training on the dataset. Generally, Fit method takes two arguments: dataset and labels. Dataset in this context is set of document's features and values. It is RDD of form ```((id, feature), value)``` where ```id``` is the unique identifier of a document, ```feature``` in our case is word in the document (It can be ngrams feature as well) and ```value``` is value of the feature. Here, value can be TFIDF value or simply word frequency. Labels are set of labels for given document and they are represented as RDD of the form ```(id, label)```. In our fit method ```x``` is dataset and ```y``` is labels.
 
 First we enumerate all labels and extract total number of distinct labels as well as a RDD containing label and it's frequency of the form ```(label, count)```
-
 ```python
-      vals = y.values()
-      labels = vals.distinct()
-      counts = vals.countByValue()  # {label: count}
+    vals = y.values()
+    labels = vals.distinct()
+    counts = vals.countByValue()  # {label: count}
 ```
 
 Now we extract size of vocabulary by enumerating through dataset RDD ```x```
 ```python
-      vocabulary_size = x.keys().values().distinct().count()
+    vocabulary_size = x.keys().values().distinct().count()
 ```
+
+Now we calculate prior probabilities for labels and take $$log$$
+```python
+    import numpy as np
+    n = vals.count()
+    priors = {k:v/n for k,v in counts.items()} # {label: prior}
+    log_priors = {k:np.log(v) for k,v in priors.items()} # {label: log(prior)}
+```
+
+I want to mention one thing here that Spark accesses RDDs by tracing it back. It means that once you perform an operation on RDD, it doesn't actually execute the operation until you try to access that RDD so you might perform multiple operations on RDD but all of them will be executed by tracing them back when you access RDD. Now, you don't want it to trace back too deep so it is a good idea to broadcast your variables periodically. Below is how you broadcast RDD (you can only broadcast RDD in form of a dictionary or map).
+```python
+    y  = y.collectAsMap()  # {id: label}
+    y = self.ctx.broadcast(y)
+```
+
+Now, we want to create a RDD which represents features by label. We will replace ```id``` of the ```x``` dataset with it's feature from ```y``` labels RDD. Then we will sum up the ```value``` for all unique combination of ```(label, feature)``` which is a reduce operation. In short we will transform dataset RDD of the type ```((id, feature), value)``` to ```((label, feature), value)```.
+```python
+    def doc_to_label(x):
+      ((doc_id, feature), value) = x
+      label = y.value[doc_id]
+      return ((label, feature), value)
+    by_label = x.map(doc_to_label)  # ((label, feature), value)
+    by_label = by_label.reduceByKey(lambda x, y: x+y)
+    by_label_map = by_label.collectAsMap()
+```
+
+
+
 
 ### H3 Heading
 

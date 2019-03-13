@@ -1,10 +1,10 @@
 ---
-title: "Naive Bayes from scratch using Spark RDDs"
+title: "Naive Bayes from scratch in Spark"
 date: 2018-01-21
 tags: [NaiveBayes, Spark, Machine Learning, Data Science, Natural language processing, Python]
 #header:
 #  image: "/images/perceptron/percept.jpg"
-excerpt: "NaiveBayes algorithm, Machine Learning"
+excerpt: "Naive Bayes algorithm, Machine Learning, PySpark"
 mathjax: "true"
 ---
 

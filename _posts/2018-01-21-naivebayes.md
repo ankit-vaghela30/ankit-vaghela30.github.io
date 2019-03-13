@@ -1,14 +1,14 @@
 ---
 title: "Naive Bayes from scratch using Spark RDDs"
 date: 2018-01-21
-tags: [NaiveBayes, Spark, Machine Learning, Data Science, Natural language processing]
+tags: [NaiveBayes, Spark, Machine Learning, Data Science, Natural language processing, Python]
 #header:
 #  image: "/images/perceptron/percept.jpg"
 excerpt: "NaiveBayes algorithm, Machine Learning"
 mathjax: "true"
 ---
 
-# Naive Bayes from scratch in 
+# Naive Bayes using PySpark package
 
 Naive bayes is a great algorithm especially for classification task in Natural language processing. This post tries to provide implementation of Naive bayes algorithm from scratch using Spark RDDs. Spark is a very good Big data processing framework and it provides PySpark package for python. This PySpark package has this special data type called RDDs(Resilient Distributed Datasets) which are immutable and partitioned collection of records. We take a NLP problem, a document classification task where given a document, we have to classify it to one of the topic labels. Topic labels can be Management, Economics, Geometry etc.
 
@@ -62,57 +62,89 @@ def restructure_cartesian_product(a):
 cartesian_product_rdd = cartesian_label.map(restructure_cartesian_product)
 ```
 
-Now, we are coming to the core part of Naive Bayes where we will calculate likelyhood probability of a word (feature) given a label. All of the steps we did previously might have seemed random but it will all connect. 
+Now, we are coming to the core part of Naive Bayes where we will calculate likelyhood probability of a word (feature) given a label. All of the steps we did previously might have seemed random but it will all connect. Let is forget about TFIDF feature for a while. If we consider simple word as feature and it's frequency as value, likelyhood probability of a word given a label is given by dividing number of times word appears in all documents having the label by sum of vocabulary size and label frequency.
 
+We already calculated the numerator part when we extracted ```by_label_map```. Now we calculate the denominator part:
 
-
-
-### H3 Heading
-
-Here's some basic text.
-
-And here's some *italics*
-
-Here's some **bold** text.
-
-What about a [link](https://github.com/dataoptimal)?
-
-Here's a bulleted list:
-* First item
-+ Second item
-- Third item
-
-Here's a numbered list:
-1. First
-2. Second
-3. Third
-
-Python code block:
 ```python
-    import numpy as np
+prob_denom = {k:(v+vocabulary_size) for k,v in counts.items()}
+prob_denom = self.ctx.broadcast(prob_denom)
+```
+Now, we create log likelyhood probability RDD which will give likelyhood probability of a word or in our context feature given a label. 
 
-    def test_function(x, y):
-      z = np.sum(x,y)
-      return z
+```python
+def calculate_likelyhood_probability(by_label):
+  ((label, feature), value) = by_label
+  value = (by_label_map.get((label, feature),0)+1)/prob_denom.value[label]
+  return ((label, feature), np.log(value))
+log_likelyhood_probability = cartesian_product_rdd.map(calculate_likelyhood_probability) # ((label, feature), log likelyhood value)
+```
+## predict method
+Predict method is also a generic method to all Machine learning algorithms, used to predict on the test dataset. Generally, it has only one input which is a test dataset. We say test dataset because most of the time, this dataset is unseen data. This dataset is also of the same form (```((id, feature), value)```) as the dataset input of fit method. 
+
+We first perform cartesian product of dataset and distinct labels but this time we will not get rid of ```id``` because we need it to map our classification label to it. So, our cartesian product RDD will be of the form ```(label, ((id, feature), value))```. Additionally, we reorganize this RDD in the form of ```((label, feature), (id, value))``` because we have ```(label, feature)``` as key in our log likelyhood probability RDD and we want to perform a join between two. Our resultant RDD after join will be of the form ```((label, feature), ((id, value), log_likelyhood))```
+```python
+# Cross and rekey by label
+def key_by_label(a):
+    (label, ((id, feature), value)) = a
+    return ((label, feature), (id, value))
+# x has initial shape ((id, feature), value)
+x = self.labels.cartesian(x)  # (label, ((id, feature), value))
+x = x.map(key_by_label)  # ((label, feature), (id, value))
+
+# compute the probability for test data by joining x with log likelyhood probability
+x = x.join(self.log_likelyhood_probability) # ((label, feature), ((id, value), log_likelyhood))
 ```
 
-R code block:
-```r
-library(tidyverse)
-df <- read_csv("some_file.csv")
-head(df)
+Now we will drop the ```value``` and convert the RDD in the form ```((id, label, feature), log_likelyhood))```
+
+```python
+ # dropping the value and converting x RDD to ((id, label, feature), log_likelyhood))
+def id_in_key(a):
+    ((label, feature), ((id, value), log_likelyhood)) = a
+    return ((id, label, feature), log_likelyhood)
+x = x.map(id_in_key) # ((id, label, feature), log_likelyhood)
 ```
 
-Here's some inline code `x+y`.
+Now we want to get rid of the ```feature ``` as well because we have to classify document by label but in doing so we will also add up log likelyhood of all ```feature``` per ```id``` per ```label```. Resultant RDD will be of the form ```((id, label), sum_log_likelyhood)```
+```python
+# adding all features log_likelyhood per id per label
+def remove_feature(a):
+    ((id, label, feature), log_likelyhood) = a
+    return ((id, label), log_likelyhood)
+x = x.map(remove_feature)
+x = x.reduceByKey(lambda x, y: x+y) # ((id, label), sum_log_likelyhood)
+```
 
-Here's an image:
-<img src="{{ site.url }}{{ site.baseurl }}/images/perceptron/linsep.jpg" alt="linearly separable data">
+Now we just add log priors of labels to the sum we calculated in last step which will give us RDD of the form ```((id, label), sum_log_likelyhood+log_prior)```
+```python
+# adding log prior to this
+log_priors = self.log_priors
+def add_log_prior(a):
+    ((id, labels), sum_words) = a
+    return ((id, labels), sum_words + log_priors.get(labels))
+x = x.map(add_log_prior) # ((id, label), sum_words+log_prior)
 
-Here's another image using Kramdown:
-![alt]({{ site.url }}{{ site.baseurl }}/images/perceptron/linsep.jpg)
+```
 
-Here's some math:
+We are on the last step now. We just have to find out which ```label``` has maximum sum for the ```id``` which can be performed by below code.
+```python
+def key_by_id(a):
+    ((id, label), rank) = a
+    return (id, (label, rank))
+def max_label(a, b):
+    (label_a, rank_a) = a
+    (label_b, rank_b) = b
+    return b if rank_a < rank_b else a
+def flatten(a):
+    (id, (label, rank)) = a
+    return (id, label)
+x = x.map(key_by_id)  # (id, (label, rank))
 
-$$z=x+y$$
+x = x.reduceByKey(max_label)  # (id, (label, rank))
+x = x.map(flatten)
+```
 
-You can also put it inline $$z=x+y$$
+Here ```x``` RDD is of the form ```(id, label)``` which is a mapping of document to the classified label.
+
+You can visit our repo for more methods on perfroming document classification without using any Machine learning package [here](https://github.com/ankit-vaghela30/Distributed-Documents-classification)

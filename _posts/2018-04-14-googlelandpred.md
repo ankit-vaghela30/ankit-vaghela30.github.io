@@ -85,10 +85,7 @@ The Sample Submission format is
 Below is the screenshot attached for the same.
 We got this score by training on just 50 percent of the dataset, so we hope to get a better score by training on entire dataset.
 
-
-<p align="center" >
-  <img src="https://github.com/dsp-uga/Team-Bulldawgs/blob/master/media/kaggle_score.png", height="350" width="500">
-</p>
+![alt]({{ site.url }}{{ site.baseurl }}/images/google-landmark-prediction/kaggle_score.png)
 
 ### Contributors
 

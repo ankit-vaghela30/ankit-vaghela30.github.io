@@ -8,15 +8,15 @@ excerpt: "Naive Bayes algorithm, Machine Learning, PySpark"
 mathjax: "true"
 ---
 
-# Naive Bayes using PySpark package
+## Naive Bayes using PySpark package
 
-Naive bayes is a great algorithm especially for classification task in Natural language processing. This post tries to provide implementation of Naive bayes algorithm from scratch using Spark RDDs. Spark is a very good Big data processing framework and it provides PySpark package for python. This PySpark package has this special data type called RDDs(Resilient Distributed Datasets) which are immutable and partitioned collection of records. We take a NLP problem, a document classification task where given a document, we have to classify it to one of the topic labels. Topic labels can be Management, Economics, Geometry etc.
+Naive bayes is a Machine learning algorithm used mostly for classification task in Natural language processing. This post tries to provide implementation of Naive bayes algorithm from scratch using Spark RDDs. Spark is a Big data processing framework and it provides PySpark package for python. This PySpark package has this special data type called RDDs(Resilient Distributed Datasets) which are immutable and partitioned collection of records. We take a NLP problem, a document classification task where given a document, we have to classify it to one of the topic labels. Topic labels can be Management, Economics, Geometry etc.
 
-## fit method
+### fit method
 
 Fit method is generic method for any Machine learning algorithm, used for training on the dataset. Generally, Fit method takes two arguments: dataset and labels. Dataset in this context is set of document's features and values. It is RDD of form ```((id, feature), value)``` where ```id``` is the unique identifier of a document, ```feature``` in our case is word in the document (It can be ngrams feature as well) and ```value``` is value of the feature. Here, value can be TFIDF value or simply word frequency. Labels are set of labels for given document and they are represented as RDD of the form ```(id, label)```. In our fit method ```x``` is dataset and ```y``` is labels.
 
-First we enumerate all labels and extract total number of distinct labels as well as a RDD containing label and it's frequency of the form ```(label, count)```
+First we enumerate all labels and extract total number of distinct labels. We also create a RDD containing label and it's frequency of the form ```(label, count)```
 ```python
 vals = y.values()
 labels = vals.distinct()
@@ -28,7 +28,7 @@ Now we extract size of vocabulary by enumerating through dataset RDD ```x```
 vocabulary_size = x.keys().values().distinct().count()
 ```
 
-Now we calculate prior probabilities for labels and take $$log$$
+Now we calculate $$log$$ of prior probabilities for labels
 ```python
 import numpy as np
 n = vals.count()
@@ -62,7 +62,7 @@ def restructure_cartesian_product(a):
 cartesian_product_rdd = cartesian_label.map(restructure_cartesian_product)
 ```
 
-Now, we are coming to the core part of Naive Bayes where we will calculate likelyhood probability of a word (feature) given a label. All of the steps we did previously might have seemed random but it will all connect. Let is forget about TFIDF feature for a while. If we consider simple word as feature and it's frequency as value, likelyhood probability of a word given a label is given by dividing number of times word appears in all documents having the label by sum of vocabulary size and label frequency.
+Now, we are coming to the core part of Naive Bayes where we will calculate likelyhood probability of a word (feature) given a label. All of the steps we did previously will connect now. Let us ignore TFIDF feature for a while. If we consider simple word as feature and it's frequency as value, likelyhood probability of a word given a label is given by dividing number of times word appears in all documents having the label by sum of vocabulary size and label frequency.
 
 We already calculated the numerator part when we extracted ```by_label_map```. Now we calculate the denominator part:
 
@@ -70,7 +70,7 @@ We already calculated the numerator part when we extracted ```by_label_map```. N
 prob_denom = {k:(v+vocabulary_size) for k,v in counts.items()}
 prob_denom = self.ctx.broadcast(prob_denom)
 ```
-Now, we create log likelyhood probability RDD which will give likelyhood probability of a word or in our context feature given a label. 
+Now, we create $$log$$ likelyhood probability RDD which will give likelyhood probability of a word or in our context feature given a label. 
 
 ```python
 def calculate_likelyhood_probability(by_label):
@@ -79,7 +79,7 @@ def calculate_likelyhood_probability(by_label):
   return ((label, feature), np.log(value))
 log_likelyhood_probability = cartesian_product_rdd.map(calculate_likelyhood_probability) # ((label, feature), log likelyhood value)
 ```
-## predict method
+### predict method
 Predict method is also a generic method to all Machine learning algorithms, used to predict on the test dataset. Generally, it has only one input which is a test dataset. We say test dataset because most of the time, this dataset is unseen data. This dataset is also of the same form (```((id, feature), value)```) as the dataset input of fit method. 
 
 We first perform cartesian product of dataset and distinct labels but this time we will not get rid of ```id``` because we need it to map our classification label to it. So, our cartesian product RDD will be of the form ```(label, ((id, feature), value))```. Additionally, we reorganize this RDD in the form of ```((label, feature), (id, value))``` because we have ```(label, feature)``` as key in our log likelyhood probability RDD and we want to perform a join between two. Our resultant RDD after join will be of the form ```((label, feature), ((id, value), log_likelyhood))```
@@ -147,4 +147,4 @@ x = x.map(flatten)
 
 Here ```x``` RDD is of the form ```(id, label)``` which is a mapping of document to the classified label.
 
-You can visit our repo for more methods on perfroming document classification without using any Machine learning package [here](https://github.com/ankit-vaghela30/Distributed-Documents-classification)
+You can visit our repo for more methods on perfroming document classification without using any Machine learning package [here](https://github.com/ankit-vaghela30/Distributed-Documents-classification).

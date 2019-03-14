@@ -47,6 +47,6 @@ For more detailed description, Please have a look at our [project report](https:
 Check our project demo [here](https://www.youtube.com/watch?v=qDAso3HYtMg&t=11s)
 
 ## References
-* https://www.kaggle.com/grassknoted/asl-alphabet/home
+* (https://www.kaggle.com/grassknoted/asl-alphabet/home)
 * https://towardsdatascience.com/transfer-learning-946518f95666
 * https://www.kaggle.com/paultimothymooney/interpret-sign-language-with-deep-learning/notebook 

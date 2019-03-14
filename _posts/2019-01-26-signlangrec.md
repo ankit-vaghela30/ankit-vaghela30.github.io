@@ -1,3 +1,13 @@
+---
+title: "American sign language recognition"
+date: 2019-01-26
+tags: [Deep learning Machine learning, Data science, Tensorflow, Python]
+#header:
+#  image: "/images/perceptron/percept.jpg"
+excerpt: "Computer vision, Deep learning"
+mathjax: "true"
+---
+
 # Sign-language-recognition
 This is a project developed as a final project for the course Advanced Data Analytics taught by Dr Yi Hong at University of Georgia. It was voted as **Best project in class**.
 

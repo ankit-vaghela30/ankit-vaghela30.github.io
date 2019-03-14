@@ -99,6 +99,10 @@ I highly recommend checking out our github wiki for more information: [https://g
 
 If you want to see NIPS 2016 style paper of this project check here: [https://github.com/ankit-vaghela30/Google-landmark-prediction/blob/master/docs/Google_Landmark_Prediction.pdf](https://github.com/ankit-vaghela30/Google-landmark-prediction/blob/master/docs/Google_Landmark_Prediction.pdf)
 
+### link to the project:
+
+link: [https://github.com/ankit-vaghela30/Google-landmark-prediction](https://github.com/ankit-vaghela30/Google-landmark-prediction)
+
 ### License
 
 This project is licensed under the MIT License - see the [License file](https://github.com/dsp-uga/Team-Bulldawgs/blob/master/LICENSE) for details

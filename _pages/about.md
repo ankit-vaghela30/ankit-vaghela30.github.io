@@ -15,20 +15,20 @@ All of my Data science/Machine learning projects can be viewed at [https://ankit
 
 ## Work experience
 
-### Schmitz lab, UGA, Athens, GA
+### Research Assistant at Schmitz lab, UGA, Athens, GA
 
 I am currently working as a Research assistant in the capacity of MEAN(MongoDB, Express.js, Angular.js, Node.js) stack developer at Schmitz lab. I have created a web based platform which is being used by UGA's undergraduate biology course students to learn about genetics and inheritance through simulated experiments.
 
 My work can be viewed by going to the lab website and go to Mendelpede application.
 link: [https://heredity.genetics.uga.edu/](https://heredity.genetics.uga.edu/)
 
-## Verifacto Inc., Atlanta, GA
+## Software engineer intern at Verifacto Inc., Atlanta, GA
 
 Verifacto Inc. provides a middleware between Vehicle insurance providers and their customers (insurers). I worked here as a Software engineer intern. Data collection and integration is the main function of the company. Multiple Vehicle insurance providers like Statefarm, All state etc. sends insurance information via various sources like email, Postal mail and even sometimes photo clicked from phone. My task was to collect all these data and integrate it in one place. The pipeline worked in a way such that all the documents are converted to physical copy which is then scanned and inserted into local file system. I extended this pipeline by running OCR(Optical Character Recognition) on it, then storing the text file on Amazon S3 server, then running customized regex for each vehicle insurance providers to collect the data and insert it in MySQL database. This data was used to provide a web based interface to both service providers and customers. 
 
 Technologies used: Python, MySQL, BeautifulSoup, Data integration
 
-## Cognizant ltd., India
+## Associate of technology at Cognizant ltd., India
 
 ### KPN, Netherland
 
@@ -36,7 +36,7 @@ KPN is a telecom giant based in Netherland. I worked on order fulfillment projec
 
 Technologies used: Salesforce platform, Vlocity
 
-## Infosys ltd., India
+## Senior systems engineer at Infosys ltd., India
 
 After completing my Bachelors degree in Instrumentation and Control engineering, I grew interest in programming so I joined Infosys ltd as a Software engineer. I worked for multiple clients on multiple projects which are described below:
 

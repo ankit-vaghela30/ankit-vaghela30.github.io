@@ -3,6 +3,8 @@ title: "About"
 permalink: /about/
 ---
 
+I am a Data science enthusiast and experienced Software engineer. My goal is to combine my machine learning and software engineering skills to create scalable and robust products. 
+
 ## Education
 
 I completed Bachelors degree from Nirma university, India in 2013. I am currently pursuing Master's degree in Compuer science at University of Georgia. My primary focus area in academics is Data science, Machine learning and Deep learning.

@@ -30,7 +30,7 @@ Technologies used: Python, MySQL, BeautifulSoup, Data integration
 
 ### Associate of technology at Cognizant ltd., India
 
-#### KPN, Netherland
+**KPN, Netherland**
 
 KPN is a telecom giant based in Netherland. I worked on order fulfillment project in Salesforce framework. I worked in the capacity of Salesforce developer and created Visualforce pages, Apex triggers, Apex classes etc. I also worked with the product mowner to develop encryption/decryption feature.
 
@@ -40,7 +40,7 @@ Technologies used: Salesforce platform, Vlocity
 
 After completing my Bachelors degree in Instrumentation and Control engineering, I grew interest in programming so I joined Infosys ltd as a Software engineer. I worked for multiple clients on multiple projects which are described below:
 
-#### First Data, USA
+**First Data, USA**
 
 I worked on 1099 Tax reporting application which was a inhouse reporting application used by First Data employees. I created a functionality to mask and unmask sensitive customer information (i.e. Tax Identification Number). Additionally, I developed a login based privilege management to allow appropriate users to view sensitive information. User behaviour like who has unmasked sensitive information at what time, was also logged on servers using a logging tool splunk. I also supported security testing of this application and rectified some of the vulnerabilities like URL injection.
 
@@ -48,13 +48,13 @@ I also supported direct client requests which mostly asked to create database sc
 
 Technologies used: Java, J2EE, Struts, Linux
 
-#### American Express, USA
+**American Express, USA**
 
 I worked on a Big Data project to create a system which showed credit card usage report in Hbase database. I created a data pipeline to filter customer data using pig, hive and map reduce algorithms.
 
 Technologies used: MapReduce, Java, Pig, Hive, HBase, 
 
-#### Telenet, Belgium
+**Telenet, Belgium**
 
 Telenet is a telecom giant in Belgium. My first project for Telenet was a Order fulfillment application where I worked on workflows, Apex triggers and Apex classes. It was entirely built on Salesforce platform where we called few Java APIs for billing process.
 

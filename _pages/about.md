@@ -69,7 +69,11 @@ Technologies used: Java, SOAP, Oracle service bus, Salesforce
 ![alt]({{ site.url }}{{ site.baseurl }}/images/recos/19645_Ankit_Vaghela.png)
 
 ## Certifications
+
+
 1. Infosys certified Big data/Hadoop developer
 ![alt]({{ site.url }}{{ site.baseurl }}/images/certis/big_data.png)
+
+
 2. Infosys certified CDRM developer
 ![alt]({{ site.url }}{{ site.baseurl }}/images/certis/cd.png)

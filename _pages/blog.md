@@ -1,7 +1,7 @@
 ---
-layout: posts
+layout: archive
 permalink: /blog/
-title: "Machine Learning projects"
+title: "Blog"
 author_profile: true
 ---
 

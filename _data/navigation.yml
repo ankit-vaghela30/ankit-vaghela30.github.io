@@ -4,8 +4,6 @@ main:
     url: /about/
   - title: "Projects"
     url: /machine-learning/
-  - title: "Blog"
-    url: /blog/
   - title: "Resume"
     url: https://ankit-vaghela30.github.io/resume/
   # - title: "About"

@@ -61,11 +61,13 @@ I later joined the Billing team and led team of four fellow colleagues to create
 Technologies used: Java, SOAP, Oracle service bus, Salesforce
 
 ## Appreciations/Recommendations
-1. 
+
 ![alt]({{ site.url }}{{ site.baseurl }}/images/recos/hezi.png)
-2. 
+
+
 ![alt]({{ site.url }}{{ site.baseurl }}/images/recos/6534_Ankit_Vaghela.png)
-3. 
+
+
 ![alt]({{ site.url }}{{ site.baseurl }}/images/recos/19645_Ankit_Vaghela.png)
 
 ## Certifications

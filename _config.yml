@@ -12,8 +12,8 @@ locale                   : "en-US"
 title                    : "Ankit Vaghela"
 title_separator          : "-"
 name                     : "Ankit Vaghela"
-description              : "Data Science Enthusiast"
-url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+description              : "Data Scientist"
+url                      : "https://ankit-vaghela30.github.io/"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
@@ -86,8 +86,8 @@ analytics:
 author:
   name             : "Ankit Vaghela"
   avatar           : "/images/ankit_avatar.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Aspiring Machine learning engineer"
-  location         : "Athens, GA"
+  bio              : "Data Scientist"
+  location         : "Atlanta, GA"
   email            :
   uri              :
   home             : # null (default), "absolute or relative url to link to author home"

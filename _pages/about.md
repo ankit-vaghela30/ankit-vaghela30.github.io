@@ -3,11 +3,12 @@ title: "About"
 permalink: /about/
 ---
 
-I am a Data science enthusiast and experienced Software engineer. My goal is to combine my machine learning and software engineering skills to create scalable and robust products. 
+I am working as a Data Scientist at ADP where I help create scalable and robust products using Deep Learning and Machine learning techniques.
 
 # Education
 
-I completed Bachelors degree from Nirma university, India in 2013. I am currently pursuing Master's degree in Compuer science at University of Georgia. My primary focus area in academics is Data science, Machine learning and Deep learning.
+I have a Master’s degree in Computer Science from University of Georgia (Graduated in 2019) where my primary focus area was AI and Machine Learning. I completed my Bachelors degree from Nirma university, India in 2013. 
+
 
 # Academic experience
 
@@ -15,9 +16,28 @@ All of my Data science/Machine learning projects can be viewed at [https://ankit
 
 # Work experience
 
+## Data Scientist at ADP, Alpharetta, GA
+
+I have been working at ADP as a Data Scientist. 
+Responsibilities:
+
+* ML privacy and security: I created an API for automatically detecting sensitive PIIs from pdfs and mask them. Used NER model Spacy for identifying PIIs from the pdfs.
+* AI for QA: Worked on a model to select which tests to run based on git changelog which reduced build time by 30%.
+* Responsible for creating BDD based end to end testing framework for Machine Learning pipeline.
+* Code quality lead: Responsible for code reviews and making sure code standards are maintained in the repo.
+* Worked with fellow Data scientists to help them integrate and deploy Machine Learning models in the pipeline.
+* Responsible for designing a Model drift and data shift application which can automatically trigger model retraining.
+* Worked on "Handwritten text recognition" where I used Deep learning models to identify characters and text from handwritten forms.
+
+
+## Software Engineer at NCR, Atlanta, GA
+
+I worked on Fuel Kiosk software for one of the NCR’s self serving kiosks product for gas stations: Optic. I created a module in C++ to fetch Customer loyalty information using web service and pass it on using Google Protobuf messages. I have created BDD automated tests in Python and modified existing Javascript based application to display the loyalty information. I also modified UI of the application using HTML and CSS.
+
+
 ## Research Assistant at Schmitz lab, UGA, Athens, GA
 
-I am currently working as a Research assistant in the capacity of MEAN(MongoDB, Express.js, Angular.js, Node.js) stack developer at Schmitz lab. I have created a web based platform which is being used by UGA's undergraduate biology course students to learn about genetics and inheritance through simulated experiments.
+I worked as a Research assistant in the capacity of MEAN(MongoDB, Express.js, Angular.js, Node.js) stack developer at Schmitz lab. I have created a web based platform which is being used by UGA's undergraduate biology course students to learn about genetics and inheritance through simulated experiments.
 
 My work can be viewed by going to the lab website and go to Mendelpede application.
 link: [https://heredity.genetics.uga.edu/](https://heredity.genetics.uga.edu/)

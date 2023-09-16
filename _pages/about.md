@@ -3,7 +3,7 @@ title: "About"
 permalink: /about/
 ---
 
-I am working as a Data Scientist at ADP where I help create scalable and robust products using Deep Learning and Machine learning techniques.
+I am working as a Machine Learning Engineer at Amazon Personalization where I primarily work on Recommendations.
 
 # Education
 
@@ -15,6 +15,16 @@ I have a Master’s degree in Computer Science from University of Georgia (Gradu
 All of my Data science/Machine learning projects can be viewed at [https://ankit-vaghela30.github.io/machine-learning/](https://ankit-vaghela30.github.io/machine-learning/)
 
 # Work experience
+
+## Machine Learning Engineer at Amazon, NYC, NY
+
+* Ran ranking experiments on Amazon’s desktop and mobile homepage to rank content which resulted in +15 MM GCCP (Growth adjusted Composite Contribution Profit) for desktop and +100 MM GCCP for mobile homepage.
+* Developed hypotheses based on previous experiments to improve model performance and added feature generators and new objectives to existing featurizer flow. As a result Improved model performance for Non-Prime customers and not logged in customers.
+* Collaborated with the team and published a research paper in an internal AMLC conference based on above experiment findings.
+* Lead SDE from my team for Prime day 2023 where I led the efforts to scale up services, switch model objectives from GCCP to total sales and the drafting process of validating the switch and model’s exploration.
+* Responsible for heading efforts to migrate our service from Intel hosts to AWS’s new graviton hosts which resulted in saving $100 per month and lesser carbon footprint (more energy efficient)
+* Responsible for switching our service’s loadbalancers from network level Netscaler to internal application level tardigrade loadbalancers to decrease costs. Also, switched service authentication to internal Cloudauth authentication to make service more secure (HTTPS).
+
 
 ## Data Scientist at ADP, Alpharetta, GA
 

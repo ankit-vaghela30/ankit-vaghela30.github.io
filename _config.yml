@@ -12,7 +12,7 @@ locale                   : "en-US"
 title                    : "Ankit Vaghela"
 title_separator          : "-"
 name                     : "Ankit Vaghela"
-description              : "Data Scientist"
+description              : "Machine Learning Engineer at Amazon"
 url                      : "https://ankit-vaghela30.github.io/"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -86,8 +86,8 @@ analytics:
 author:
   name             : "Ankit Vaghela"
   avatar           : "/images/ankit_avatar.jpg" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "Data Scientist"
-  location         : "Atlanta, GA"
+  bio              : "Machine Learning Engineer at Amazon"
+  location         : "New York City, NY"
   email            :
   uri              :
   home             : # null (default), "absolute or relative url to link to author home"
